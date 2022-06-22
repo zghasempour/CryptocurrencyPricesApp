@@ -21,6 +21,9 @@ private val retrofit = Retrofit.Builder()
 interface MarketsApiService {
     @GET("markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
     fun getMarketsList() : Call<List<Coin>>
+
+    @GET("/bitcoin/market_chart?vs_currency=usd&days=2")
+    fun getMarketsHistoryList() : Call<Prices>
 }
 
 object MarketsApi {

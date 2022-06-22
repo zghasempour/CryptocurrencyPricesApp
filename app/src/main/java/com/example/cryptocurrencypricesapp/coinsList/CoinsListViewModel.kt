@@ -41,19 +41,6 @@ init {
     private fun getMarkets() {
         coroutineScope.launch {
             var getMarketsDeferred = MarketsApi.retrofitService.getMarketsList()
-             /*   MarketsApi.retrofitService.getMarketsList().enqueue(object :
-                    retrofit2.Callback<List<Coin>> {
-                    override fun onResponse(call: Call<List<Coin>>, response: Response<List<Coin>>) {
-                        Log.i("response", "onResponse: ${response.body()}")
-                        _coins.value = response.body()?.get(0)
-                    }
-
-                    override fun onFailure(call: Call<List<Coin>>, t: Throwable) {
-                        Log.i("fail", "onFailure: ${t.message}")
-
-                    }
-
-                })*/
 
             try {
                 _status.value = MarketsApiStatus.LOADING
