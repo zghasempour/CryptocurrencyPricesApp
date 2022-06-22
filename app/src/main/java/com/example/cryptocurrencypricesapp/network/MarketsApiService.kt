@@ -2,6 +2,7 @@ package com.example.cryptocurrencypricesapp.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.tradingview.lightweightcharts.api.series.common.SeriesData
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -22,7 +23,7 @@ interface MarketsApiService {
     @GET("markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
     fun getMarketsList() : Call<List<Coin>>
 
-    @GET("/bitcoin/market_chart?vs_currency=usd&days=2")
+    @GET("bitcoin/market_chart?vs_currency=usd&days=2")
     fun getMarketsHistoryList() : Call<Prices>
 }
 
