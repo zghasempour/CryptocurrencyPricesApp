@@ -77,7 +77,5 @@ dependencies {
     // Feature module Support
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.4.2")
 
-    implementation 'com.tradingview:lightweightcharts:3.8.0'
-
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

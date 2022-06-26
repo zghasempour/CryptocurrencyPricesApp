@@ -41,19 +41,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{Double.toString(viewModel.selectedCoin.current_price)}"
-                app:layout_constraintBottom_toTopOf="@id/charts_view"
+                app:layout_constraintBottom_toTopOf="@id/chart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-            <com.tradingview.lightweightcharts.view.ChartsView
-                android:id="@+id/charts_view"
-                android:layout_width="wrap_content"
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/transition_current_scene"/>
+                app:layout_constraintTop_toBottomOf="@id/transition_current_scene" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

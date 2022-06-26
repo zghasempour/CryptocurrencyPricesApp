@@ -3,21 +3,16 @@ package com.example.cryptocurrencypricesapp.coinsDetails
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.cryptocurrencypricesapp.R
-import com.example.cryptocurrencypricesapp.StaticRepository
 import com.example.cryptocurrencypricesapp.coinsList.MarketsApiStatus
 import com.example.cryptocurrencypricesapp.network.Coin
-import com.example.cryptocurrencypricesapp.network.Data
 import com.example.cryptocurrencypricesapp.network.MarketsApi
-import com.tradingview.lightweightcharts.api.series.common.SeriesData
-import com.tradingview.lightweightcharts.api.series.enums.SeriesType
-import com.tradingview.lightweightcharts.api.series.models.LineData
-import com.tradingview.lightweightcharts.api.series.models.Time
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
-import java.time.LocalDate
 
 class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(app) {
     private val _selectedCoin = MutableLiveData<Coin>()
@@ -35,36 +30,22 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
 
     init{
 
+
         _selectedCoin.value = coin
+        loadData()
 
     }
 
+    private val _data = MutableLiveData<Entry>()
+    val data : LiveData<Entry>
+     get()=_data
 
     val displayPropertyPrice = Transformations.map(selectedCoin) {
         app.applicationContext.getString(R.string.display_price, it.current_price)
     }
 
-
-    private val staticRepository = StaticRepository()
-
-    var minimumPrice: Float = 0f
-    var maximumPrice: Float = 0f
-    var avgPrice: Float = 0f
-
-    val seriesData: LiveData<Data>
-        get() = data
-
-    private val data: MutableLiveData<Data> by lazy {
-        MutableLiveData<Data>().also {
-            loadData()
-        }
-    }
-
     private fun loadData() {
-        viewModelScope.launch {
-            val barData = staticRepository.getPriceLinesWithTitlesSeriesData()
-            data.postValue(Data(barData, SeriesType.LINE))
-        }
+
         coroutineScope.launch {
             val getMarketsDeferred = MarketsApi.retrofitService.getMarketsHistoryList()
 
@@ -74,17 +55,19 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
                 _status.value = MarketsApiStatus.DONE
                 if (!listResult.equals(null))
                 {
-                    val barData = listResult.prices.flatten().zipWithNext()
-                    lateinit var lineData : LineData
-                    val barData2 : List<SeriesData> = mutableListOf()
-                    for (item in barData)
+                    val barData = listResult.prices.flatten()
+                    lateinit var lineData : Entry
+
+                    for (i in 0..barData.size step 2)
                     {
 
-                       lineData = LineData(Time.StringTime(item.first.toString()), item.second)
-                        barData2.plus(lineData)
+
+                        lineData = Entry(barData[i], barData[i+1])
+                        _data.postValue(lineData)
+                        //barData2.add(lineData)
 
                     }
-                    data.postValue(Data(barData2 , SeriesType.LINE))
+                    //data.postValue(barData2)
 
                 }
 
@@ -97,7 +80,7 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
         }
     }
 
-    fun fetchPrices() {
+   /* fun fetchPrices() {
         val seriesDataList = data.value?.list
         minimumPrice = (seriesDataList?.get(0) as LineData).value
         maximumPrice = minimumPrice
@@ -111,7 +94,7 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
             }
         }
         avgPrice = (maximumPrice + minimumPrice) / 2
-    }
+    }*/
 
 
 

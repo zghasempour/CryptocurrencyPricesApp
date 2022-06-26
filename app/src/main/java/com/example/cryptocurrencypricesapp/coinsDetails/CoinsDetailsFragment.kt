@@ -5,27 +5,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cryptocurrencypricesapp.databinding.FragmentCoinsDetailsBinding
-import com.example.cryptocurrencypricesapp.network.Data
-import com.tradingview.lightweightcharts.api.chart.models.color.surface.SolidColor
-import com.tradingview.lightweightcharts.api.chart.models.color.toIntColor
-import com.tradingview.lightweightcharts.api.interfaces.ChartApi
-import com.tradingview.lightweightcharts.api.interfaces.SeriesApi
-import com.tradingview.lightweightcharts.api.options.models.*
-import com.tradingview.lightweightcharts.api.series.enums.LastPriceAnimationMode
-import com.tradingview.lightweightcharts.api.series.enums.LineStyle
-import com.tradingview.lightweightcharts.api.series.enums.LineWidth
-import com.tradingview.lightweightcharts.api.series.models.PriceScaleId
-import com.tradingview.lightweightcharts.view.ChartsView
-import kotlinx.android.synthetic.main.fragment_coins_details.*
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.Legend.LegendForm
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.components.YAxis.AxisDependency
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.github.mikephil.charting.utils.ColorTemplate
 
-class CoinsDetailsFragment : Fragment() {
+class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
     private lateinit var viewModel: CoinsDetailsViewModel
     private lateinit var viewModelFactory: CoinDetailViewModelFactory
-    private var series: MutableList<SeriesApi> = mutableListOf()
+
+    private lateinit var binding : FragmentCoinsDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +32,7 @@ class CoinsDetailsFragment : Fragment() {
     ): View? {
 
         val application = requireNotNull(activity).application
-        val binding = FragmentCoinsDetailsBinding.inflate(inflater)
+        binding = FragmentCoinsDetailsBinding.inflate(inflater)
         binding.lifecycleOwner = this
          val coin = CoinsDetailsFragmentArgs.fromBundle(arguments!!).selectedCoin
         viewModelFactory = CoinDetailViewModelFactory(coin,application)
@@ -47,133 +46,139 @@ class CoinsDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         provideViewModel()
+        chartConfiguration()
         observeViewModelData()
-        subscribeOnChartReady(charts_view)
-        applyChartOptions()
     }
-
     private fun provideViewModel() {
         viewModel = ViewModelProvider(
             this, viewModelFactory).get(CoinsDetailsViewModel::class.java)
     }
 
+    private fun chartConfiguration() {
+        binding.chart.setOnChartValueSelectedListener(this)
+
+        // enable description text
+
+        // enable description text
+        binding.chart.getDescription().setEnabled(true)
+
+        // enable touch gestures
+
+        // enable touch gestures
+        binding.chart.setTouchEnabled(true)
+
+        // enable scaling and dragging
+
+        // enable scaling and dragging
+        binding.chart.setDragEnabled(true)
+        binding.chart.setScaleEnabled(true)
+        binding.chart.setDrawGridBackground(false)
+
+        // if disabled, scaling can be done on x- and y-axis separately
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        binding.chart.setPinchZoom(true)
+
+        // set an alternative background color
+
+        // set an alternative background color
+        binding.chart.setBackgroundColor(Color.LTGRAY)
+
+        val data = LineData()
+        data.setValueTextColor(Color.WHITE)
+
+        // add empty data
+
+        // add empty data
+        binding.chart.setData(data)
+
+        // get the legend (only possible after setting data)
+
+        // get the legend (only possible after setting data)
+        val l: Legend = binding.chart.getLegend()
+
+        // modify the legend ...
+
+        // modify the legend ...
+        l.form = LegendForm.LINE
+        //l.typeface = tfLight
+        l.textColor = Color.WHITE
+
+        val xl: XAxis = binding.chart.getXAxis()
+        //xl.typeface = tfLight
+        xl.textColor = Color.WHITE
+        xl.setDrawGridLines(false)
+        xl.setAvoidFirstLastClipping(true)
+        xl.isEnabled = true
+
+        val leftAxis: YAxis = binding.chart.getAxisLeft()
+       // leftAxis.typeface = tfLight
+        leftAxis.textColor = Color.WHITE
+        leftAxis.axisMaximum = 100f
+        leftAxis.axisMinimum = 0f
+        leftAxis.setDrawGridLines(true)
+
+        val rightAxis: YAxis = binding.chart.getAxisRight()
+        rightAxis.isEnabled = false
+    }
+
     private fun observeViewModelData() {
-        viewModel!!.seriesData.observe(viewLifecycleOwner) { data ->
-            createSeriesWithData(data, PriceScaleId.RIGHT, charts_view.api) { series ->
-                this.series.clear()
-                this.series.add(series)
 
-                viewModel.fetchPrices()
-
-                series.createPriceLine(
-                    PriceLineOptions(
-                        price = viewModel.minimumPrice,
-                        color = Color.parseColor("#be1238").toIntColor(),
-                        lineWidth = LineWidth.TWO,
-                        lineStyle = LineStyle.SOLID,
-                        axisLabelVisible = true,
-                        title = "minimum price",
-                    )
-                )
-
-                series.createPriceLine(
-                    PriceLineOptions(
-                        price = viewModel.avgPrice,
-                        color = Color.parseColor("#be1238").toIntColor(),
-                        lineWidth = LineWidth.TWO,
-                        lineStyle = LineStyle.SOLID,
-                        axisLabelVisible = true,
-                        title = "average price",
-                    )
-                )
-
-                val priceLine = series.createPriceLine(
-                    PriceLineOptions(
-                        price = viewModel.maximumPrice,
-                        color = Color.parseColor("#be1238").toIntColor(),
-                        lineWidth = LineWidth.TWO,
-                        lineStyle = LineStyle.SOLID,
-                        axisLabelVisible = true,
-                        title = "maximum price",
-                    )
-                )
-
-                charts_view.api.timeScale.fitContent()
-            }
+        val data: LineData = binding.chart.data
+        var set = data.getDataSetByIndex(0)
+        // set.addEntry(...); // can be called as well
+        if (set == null) {
+            set = createSet()
+            data.addDataSet(set)
         }
+
+        viewModel!!.data.observe(viewLifecycleOwner) { }
+       // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
+        data.addEntry(viewModel.data.value, 0)
+
+        data.notifyDataChanged()
+
+        // let the chart know it's data has changed
+        binding.chart.notifyDataSetChanged()
+
+        // limit the number of visible entries
+        binding.chart.setVisibleXRangeMaximum(120f)
+        // chart.setVisibleYRange(30, AxisDependency.LEFT);
+
+        // move to the latest entry
+        binding.chart.moveViewToX(data.entryCount.toFloat())
+
+        // this automatically refreshes the chart (calls invalidate())
+        // chart.moveViewTo(data.getXValCount()-7, 55f,
+        // AxisDependency.LEFT);
     }
 
-    private fun subscribeOnChartReady(view: ChartsView) {
-        view.subscribeOnChartStateChange { state ->
-            when (state) {
-                is ChartsView.State.Preparing -> Unit
-                is ChartsView.State.Ready -> {
-                    Toast.makeText(context, "Chart ${view.id} is ready", Toast.LENGTH_SHORT).show()
-                }
-                is ChartsView.State.Error -> {
-                    Toast.makeText(context, state.exception.localizedMessage, Toast.LENGTH_LONG).show()
-                }
-            }
-        }
+    private fun createSet(): LineDataSet {
+        val set = LineDataSet(null, "Dynamic Data")
+        set.axisDependency = AxisDependency.LEFT
+        set.color = ColorTemplate.getHoloBlue()
+        set.setCircleColor(Color.WHITE)
+        set.lineWidth = 2f
+        set.circleRadius = 4f
+        set.fillAlpha = 65
+        set.fillColor = ColorTemplate.getHoloBlue()
+        set.highLightColor = Color.rgb(244, 117, 117)
+        set.valueTextColor = Color.WHITE
+        set.valueTextSize = 9f
+        set.setDrawValues(false)
+        return set
     }
 
-    private fun applyChartOptions() {
-        charts_view.api.applyOptions {
-            layout = layoutOptions {
-                textColor = Color.parseColor("#d1d4dc").toIntColor()
-                background = SolidColor(Color.BLACK)
-            }
-            rightPriceScale = priceScaleOptions {
-                scaleMargins = priceScaleMargins {
-                    top = 0.3f
-                    bottom = 0.25f
-                }
-            }
-            crosshair = crosshairOptions {
-                vertLine = crosshairLineOptions {
-                    width = LineWidth.THREE
-                    color = Color.YELLOW.toIntColor()
-                    style = LineStyle.SOLID
-                }
-                horzLine = crosshairLineOptions {
-                    visible = false
-                    labelVisible = false
-                }
-            }
-            grid = gridOptions {
-                vertLines = gridLineOptions {
-                    color = Color.argb(0, 42, 46, 57).toIntColor()
-                }
-                horzLines = gridLineOptions {
-                    color = Color.argb(0, 42, 46, 57).toIntColor()
-                }
-            }
-            handleScroll = handleScrollOptions {
-                vertTouchDrag = false
-            }
-        }
+    private var thread: Thread? = null
+
+
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+        TODO("Not yet implemented")
     }
 
-    private fun createSeriesWithData(
-        data: Data,
-        priceScale: PriceScaleId,
-        chartApi: ChartApi,
-        onSeriesCreated: (SeriesApi) -> Unit
-    ) {
-        chartApi.addLineSeries(
-            options = LineSeriesOptions(
-                color = Color.rgb(0, 120, 255).toIntColor(),
-                lineWidth = LineWidth.TWO,
-                crosshairMarkerVisible = false,
-                lastValueVisible = false,
-                priceLineVisible = false,
-                lastPriceAnimation = LastPriceAnimationMode.CONTINUOUS
-            ),
-            onSeriesCreated = { api ->
-                api.setData(data.list)
-                onSeriesCreated(api)
-            }
-        )
+    override fun onNothingSelected() {
+        TODO("Not yet implemented")
     }
+
 
 }
