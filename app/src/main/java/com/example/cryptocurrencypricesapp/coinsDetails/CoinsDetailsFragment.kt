@@ -132,25 +132,21 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
             data.addDataSet(set)
         }
 
-        viewModel!!.data.observe(viewLifecycleOwner) { }
-       // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
-        data.addEntry(viewModel.data.value, 0)
+        viewModel.data.observe (viewLifecycleOwner) {
+            data.addEntry(it, 0)
 
-        data.notifyDataChanged()
+            data.notifyDataChanged()
 
-        // let the chart know it's data has changed
-        binding.chart.notifyDataSetChanged()
+            // let the chart know it's data has changed
+            binding.chart.notifyDataSetChanged()
 
-        // limit the number of visible entries
-        binding.chart.setVisibleXRangeMaximum(120f)
-        // chart.setVisibleYRange(30, AxisDependency.LEFT);
+            // limit the number of visible entries
+            binding.chart.setVisibleXRangeMaximum(120f)
 
-        // move to the latest entry
-        binding.chart.moveViewToX(data.entryCount.toFloat())
+            // move to the latest entry
+            binding.chart.moveViewToX(data.entryCount.toFloat())
+        }
 
-        // this automatically refreshes the chart (calls invalidate())
-        // chart.moveViewTo(data.getXValCount()-7, 55f,
-        // AxisDependency.LEFT);
     }
 
     private fun createSet(): LineDataSet {
