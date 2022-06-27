@@ -47,6 +47,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         provideViewModel()
         chartConfiguration()
+
         observeViewModelData()
     }
     private fun provideViewModel() {
@@ -77,7 +78,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         // if disabled, scaling can be done on x- and y-axis separately
 
         // if disabled, scaling can be done on x- and y-axis separately
-        binding.chart.setPinchZoom(true)
+        binding.chart.setPinchZoom(false)
 
         // set an alternative background color
 
@@ -114,7 +115,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         val leftAxis: YAxis = binding.chart.getAxisLeft()
        // leftAxis.typeface = tfLight
         leftAxis.textColor = Color.WHITE
-        leftAxis.axisMaximum = 100f
+        leftAxis.axisMaximum = 1000000f
         leftAxis.axisMinimum = 0f
         leftAxis.setDrawGridLines(true)
 
@@ -133,7 +134,11 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         }
 
         viewModel.data.observe (viewLifecycleOwner) {
-            data.addEntry(it, 0)
+
+           data.addEntry(it[0], 0)
+           // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
+
+            //   data.dataSets.addAll(it)
 
             data.notifyDataChanged()
 
@@ -146,6 +151,25 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
             // move to the latest entry
             binding.chart.moveViewToX(data.entryCount.toFloat())
         }
+
+       /* for (i in 0..(viewModel.data.value?.size ?: 1))
+        {
+            data.addEntry(viewModel.data.value?.get(i) , 0)
+        }
+       // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
+
+        //   data.dataSets.addAll(it)
+
+        data.notifyDataChanged()
+
+        // let the chart know it's data has changed
+        binding.chart.notifyDataSetChanged()
+
+        // limit the number of visible entries
+        binding.chart.setVisibleXRangeMaximum(1200000f)
+
+        // move to the latest entry
+        binding.chart.moveViewToX(data.entryCount.toFloat())*/
 
     }
 

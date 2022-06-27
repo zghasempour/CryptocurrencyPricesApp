@@ -29,15 +29,13 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init{
-
-
         _selectedCoin.value = coin
         loadData()
 
     }
 
-    private val _data = MutableLiveData<Entry>()
-    val data : LiveData<Entry>
+    private val _data = MutableLiveData<List<Entry>>()
+    val data : LiveData<List<Entry>>
      get()=_data
 
     val displayPropertyPrice = Transformations.map(selectedCoin) {
@@ -57,17 +55,16 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
                 {
                     val barData = listResult.prices.flatten()
                     lateinit var lineData : Entry
-
+                    val barData2 : MutableList<Entry> = mutableListOf()
                     for (i in 0..barData.size step 2)
                     {
 
 
                         lineData = Entry(barData[i], barData[i+1])
-                        _data.postValue(lineData)
-                        //barData2.add(lineData)
+                        barData2.add(lineData)
 
                     }
-                    //data.postValue(barData2)
+                    data.apply {  barData2}
 
                 }
 
