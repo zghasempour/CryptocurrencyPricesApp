@@ -6,6 +6,9 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+import java.util.*
 
 private const val BASE_URL = "https://api.coingecko.com/api/v3/coins/"
 
@@ -22,8 +25,8 @@ interface MarketsApiService {
     @GET("markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
     fun getMarketsList() : Call<List<Coin>>
 
-    @GET("bitcoin/market_chart?vs_currency=usd&days=2")
-    fun getMarketsHistoryList() : Call<Prices>
+    @GET("{coinId}/market_chart")
+    fun getMarketsHistoryList(@Path("coinId") coinId: String , @Query("vs_currency") currency: String, @Query("days") days: Int) : Call<Prices>
 }
 
 object MarketsApi {

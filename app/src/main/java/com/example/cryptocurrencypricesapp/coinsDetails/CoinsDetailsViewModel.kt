@@ -1,6 +1,8 @@
 package com.example.cryptocurrencypricesapp.coinsDetails
 
 import android.app.Application
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.cryptocurrencypricesapp.R
 import com.example.cryptocurrencypricesapp.coinsList.MarketsApiStatus
@@ -13,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
+import kotlin.math.roundToInt
 
 class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(app) {
     private val _selectedCoin = MutableLiveData<Coin>()
@@ -30,11 +33,14 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
 
     init{
         _selectedCoin.value = coin
-        loadData()
+       // loadData()
 
     }
-
-    private val _data = MutableLiveData<List<Entry>>()
+    private val _data: MutableLiveData<List<Entry>> by lazy {
+        MutableLiveData<List<Entry>>().also {
+            loadData()
+        }
+    }
     val data : LiveData<List<Entry>>
      get()=_data
 
@@ -45,7 +51,9 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
     private fun loadData() {
 
         coroutineScope.launch {
-            val getMarketsDeferred = MarketsApi.retrofitService.getMarketsHistoryList()
+            val getMarketsDeferred = MarketsApi.retrofitService.getMarketsHistoryList(
+                _selectedCoin.value!!.id,
+                "usd",2)
 
             try {
                 _status.value = MarketsApiStatus.LOADING
@@ -56,7 +64,7 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
                     val barData = listResult.prices.flatten()
                     lateinit var lineData : Entry
                     val barData2 : MutableList<Entry> = mutableListOf()
-                    for (i in 0..barData.size step 2)
+                    for (i in 0..49 step 2)
                     {
 
 
@@ -64,7 +72,8 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
                         barData2.add(lineData)
 
                     }
-                    data.apply {  barData2}
+                    Log.i(TAG, "failure: $barData2[3]")
+                    _data.postValue(barData2)
 
                 }
 

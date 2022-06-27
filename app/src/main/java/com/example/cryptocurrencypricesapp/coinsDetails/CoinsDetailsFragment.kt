@@ -47,7 +47,6 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         provideViewModel()
         chartConfiguration()
-
         observeViewModelData()
     }
     private fun provideViewModel() {
@@ -112,12 +111,14 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         xl.setAvoidFirstLastClipping(true)
         xl.isEnabled = true
 
+
         val leftAxis: YAxis = binding.chart.getAxisLeft()
        // leftAxis.typeface = tfLight
         leftAxis.textColor = Color.WHITE
-        leftAxis.axisMaximum = 1000000f
-        leftAxis.axisMinimum = 0f
+        leftAxis.axisMaximum = 21900f
+        leftAxis.axisMinimum = 21000f
         leftAxis.setDrawGridLines(true)
+
 
         val rightAxis: YAxis = binding.chart.getAxisRight()
         rightAxis.isEnabled = false
@@ -135,7 +136,10 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
 
         viewModel.data.observe (viewLifecycleOwner) {
 
-           data.addEntry(it[0], 0)
+            for (element in it){
+           //data.addEntry(Entry(1220.0F*i, 21173.3F*i), 0)}
+           data.addEntry(element, 0)}
+
            // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
 
             //   data.dataSets.addAll(it)
@@ -146,15 +150,16 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
             binding.chart.notifyDataSetChanged()
 
             // limit the number of visible entries
-            binding.chart.setVisibleXRangeMaximum(120f)
+            binding.chart.setVisibleXRangeMaximum(9000000000000f)
 
             // move to the latest entry
             binding.chart.moveViewToX(data.entryCount.toFloat())
         }
 
-       /* for (i in 0..(viewModel.data.value?.size ?: 1))
+      /*  for (i in 0..100)
         {
             data.addEntry(viewModel.data.value?.get(i) , 0)
+            //data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
         }
        // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
 
@@ -166,7 +171,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         binding.chart.notifyDataSetChanged()
 
         // limit the number of visible entries
-        binding.chart.setVisibleXRangeMaximum(1200000f)
+        binding.chart.setVisibleXRangeMaximum(120f)
 
         // move to the latest entry
         binding.chart.moveViewToX(data.entryCount.toFloat())*/
@@ -177,9 +182,9 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         val set = LineDataSet(null, "Dynamic Data")
         set.axisDependency = AxisDependency.LEFT
         set.color = ColorTemplate.getHoloBlue()
-        set.setCircleColor(Color.WHITE)
+        set.setCircleColor(Color.TRANSPARENT)
         set.lineWidth = 2f
-        set.circleRadius = 4f
+        set.circleRadius = 1f
         set.fillAlpha = 65
         set.fillColor = ColorTemplate.getHoloBlue()
         set.highLightColor = Color.rgb(244, 117, 117)
