@@ -2,6 +2,7 @@ package com.example.cryptocurrencypricesapp.coinsDetails
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,14 +71,14 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         // enable scaling and dragging
 
         // enable scaling and dragging
-        binding.chart.setDragEnabled(true)
+        binding.chart.isDragEnabled = true
         binding.chart.setScaleEnabled(true)
         binding.chart.setDrawGridBackground(false)
 
         // if disabled, scaling can be done on x- and y-axis separately
 
         // if disabled, scaling can be done on x- and y-axis separately
-        binding.chart.setPinchZoom(false)
+        binding.chart.setPinchZoom(true)
 
         // set an alternative background color
 
@@ -112,12 +113,13 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         xl.isEnabled = true
 
 
-        val leftAxis: YAxis = binding.chart.getAxisLeft()
-       // leftAxis.typeface = tfLight
-        leftAxis.textColor = Color.WHITE
-        leftAxis.axisMaximum = 21900f
-        leftAxis.axisMinimum = 21000f
-        leftAxis.setDrawGridLines(true)
+
+
+       /* leftAxis.axisMaximum = 1290f    //for Ethereum
+        leftAxis.axisMinimum = 1200f*/
+       /* leftAxis.axisMaximum = 21900f  //for bitcoin
+        leftAxis.axisMinimum = 21000f*/
+
 
 
         val rightAxis: YAxis = binding.chart.getAxisRight()
@@ -125,6 +127,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
     }
 
     private fun observeViewModelData() {
+
 
         val data: LineData = binding.chart.data
         var set = data.getDataSetByIndex(0)
@@ -143,6 +146,11 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
            // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
 
             //   data.dataSets.addAll(it)
+
+
+            viewModel.fetchPrices()
+
+            chartMaxMinConfiguration(viewModel.maximumPrice,viewModel.minimumPrice)
 
             data.notifyDataChanged()
 
@@ -178,11 +186,20 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
 
     }
 
+    private fun chartMaxMinConfiguration(max: Float, min: Float) {
+        val leftAxis: YAxis = binding.chart.getAxisLeft()
+        // leftAxis.typeface = tfLight
+        leftAxis.textColor = Color.WHITE
+        leftAxis.axisMaximum = max
+        leftAxis.axisMinimum = min
+        leftAxis.setDrawGridLines(true)
+    }
+
     private fun createSet(): LineDataSet {
         val set = LineDataSet(null, "Dynamic Data")
         set.axisDependency = AxisDependency.LEFT
         set.color = ColorTemplate.getHoloBlue()
-        set.setCircleColor(Color.TRANSPARENT)
+        set.setCircleColor(Color.MAGENTA)
         set.lineWidth = 2f
         set.circleRadius = 1f
         set.fillAlpha = 65
@@ -198,11 +215,11 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
 
 
     override fun onValueSelected(e: Entry?, h: Highlight?) {
-        TODO("Not yet implemented")
+        Log.i("Entry selected", e.toString())
     }
 
     override fun onNothingSelected() {
-        TODO("Not yet implemented")
+        Log.i("Nothing selected", "Nothing selected.")
     }
 
 

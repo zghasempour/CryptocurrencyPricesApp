@@ -28,13 +28,14 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
     val selectedCoin : LiveData<Coin>
     get() = _selectedCoin
 
+    var minimumPrice: Float = 0f
+    var maximumPrice: Float = 0f
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init{
         _selectedCoin.value = coin
-       // loadData()
-
     }
     private val _data: MutableLiveData<List<Entry>> by lazy {
         MutableLiveData<List<Entry>>().also {
@@ -43,10 +44,6 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
     }
     val data : LiveData<List<Entry>>
      get()=_data
-
-    val displayPropertyPrice = Transformations.map(selectedCoin) {
-        app.applicationContext.getString(R.string.display_price, it.current_price)
-    }
 
     private fun loadData() {
 
@@ -64,7 +61,7 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
                     val barData = listResult.prices.flatten()
                     lateinit var lineData : Entry
                     val barData2 : MutableList<Entry> = mutableListOf()
-                    for (i in 0..49 step 2)
+                    for (i in barData.indices step 2)
                     {
 
 
@@ -86,12 +83,12 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
         }
     }
 
-   /* fun fetchPrices() {
-        val seriesDataList = data.value?.list
-        minimumPrice = (seriesDataList?.get(0) as LineData).value
+    fun fetchPrices() {
+        val seriesDataList = _data.value
+        minimumPrice = seriesDataList?.get(0)!!.y
         maximumPrice = minimumPrice
         for (i in seriesDataList.indices) {
-            val price = (seriesDataList[i] as LineData).value
+            val price = seriesDataList[i].y
             if (price > maximumPrice) {
                 maximumPrice = price
             }
@@ -99,8 +96,8 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
                 minimumPrice = price
             }
         }
-        avgPrice = (maximumPrice + minimumPrice) / 2
-    }*/
+
+    }
 
 
 
