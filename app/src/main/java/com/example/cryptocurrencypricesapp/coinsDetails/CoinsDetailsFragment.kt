@@ -83,7 +83,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         // set an alternative background color
 
         // set an alternative background color
-        binding.chart.setBackgroundColor(Color.LTGRAY)
+        binding.chart.setBackgroundColor(Color.TRANSPARENT)
 
         val data = LineData()
         data.setValueTextColor(Color.WHITE)
@@ -199,12 +199,12 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         val set = LineDataSet(null, "Dynamic Data")
         set.axisDependency = AxisDependency.LEFT
         set.color = ColorTemplate.getHoloBlue()
-        set.setCircleColor(Color.MAGENTA)
+        set.setCircleColor(Color.TRANSPARENT)
         set.lineWidth = 2f
         set.circleRadius = 1f
         set.fillAlpha = 65
         set.fillColor = ColorTemplate.getHoloBlue()
-        set.highLightColor = Color.rgb(244, 117, 117)
+        set.highLightColor = Color.rgb(244, 17, 117)
         set.valueTextColor = Color.WHITE
         set.valueTextSize = 9f
         set.setDrawValues(false)

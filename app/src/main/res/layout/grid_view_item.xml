@@ -7,7 +7,149 @@
             name="Coin"
             type="com.example.cryptocurrencypricesapp.network.Coin" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group_1792"
+        android:layout_width="match_parent"
+        android:layout_height="82dp">
+
+
+        <View
+            android:id="@+id/rectangle_488"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rectangle_488_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:fontFamily="@font/abeezee"
+            android:gravity="end"
+            android:text="@{Double.toString(Coin.current_price)}"
+            android:textColor="@color/trade_bitcoin_color"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/rate"
+            app:layout_constraintTop_toTopOf="@+id/path_3"
+            tools:text="@string/_44_826_12___string"/>
+
+
+        <ImageView
+            android:id="@+id/path_3"
+            android:layout_width="52.36dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/path_3"
+            app:layout_constraintBottom_toBottomOf="@+id/tether"
+            app:layout_constraintStart_toEndOf="@+id/tether" />
+
+        <TextView
+            android:id="@+id/tether"
+            android:layout_width="64dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/abeezee"
+            android:text="@{Coin.name}"
+            android:textColor="@color/trade_bitcoin_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tether__usdt__ek1"
+            app:layout_constraintTop_toTopOf="@+id/rectangle_488"
+            app:layout_constraintVertical_bias="0.38"
+            tools:text="@string/tether_string"/>
+
+        <TextView
+            android:id="@+id/usdt"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:fontFamily="@font/abeezee"
+            android:text="@{Coin.id}"
+            android:textColor="#546E7A"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tether"
+            app:layout_constraintTop_toBottomOf="@+id/tether"
+            tools:text="@string/usdt_string"/>
+
+        <RelativeLayout
+            android:id="@+id/tether__usdt_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="276dp">
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/tether__usdt__ek1"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/tether__usdt__ek1"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangle_488"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rectangle_488"
+            app:layout_constraintVertical_bias="0.583" />
+
+        <ImageView
+            android:id="@+id/tether__usdt__ek2"
+            android:layout_width="22.4dp"
+            android:layout_height="20.63dp"
+            app:imageUrl="@{Coin.image}"
+            app:layout_constraintBottom_toBottomOf="@+id/tether__usdt__ek1"
+            app:layout_constraintEnd_toEndOf="@+id/tether__usdt__ek1"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="@+id/rectangle_488"
+            app:layout_constraintTop_toTopOf="@+id/tether__usdt__ek1"
+            app:layout_constraintVertical_bias="0.533"
+            tools:src="@drawable/tether__usdt__ek2"/>
+
+        <TextView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price"
+            android:layout_alignStart="@+id/price"
+            android:layout_alignEnd="@+id/rectangle_488"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginStart="60dp"
+            android:fontFamily="@font/abeezee"
+            android:text="@string/_0_01__string"
+            android:textColor="@color/sell_color"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/path_3"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            app:layout_constraintVertical_bias="0.315" />
+
+        <ImageView
+            android:id="@+id/coolicon_ek6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/rate"
+            android:src="@drawable/coolicon_ek6"
+            app:layout_constraintBottom_toBottomOf="@+id/rate"
+            app:layout_constraintStart_toEndOf="@+id/rate"
+            app:layout_constraintTop_toTopOf="@+id/rate" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -45,5 +187,5 @@
         app:layout_constraintTop_toBottomOf="@+id/coin_name" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>

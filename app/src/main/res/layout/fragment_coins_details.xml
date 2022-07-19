@@ -7,7 +7,836 @@
         name="viewModel"
         type="com.example.cryptocurrencypricesapp.coinsDetails.CoinsDetailsViewModel" />
 </data>
-    <ScrollView
+
+        <ScrollView android:id="@+id/trade_page"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <RelativeLayout android:id="@+id/content_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+
+                <RelativeLayout
+                    android:id="@+id/page_trade_page_ek1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp">
+
+                    <View
+                        android:id="@+id/rectangle_495"
+                        android:layout_width="165dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="201dp"
+                        android:layout_marginTop="765dp"
+                        android:background="@drawable/rectangle_495_shape" />
+
+                    <ImageView
+                        android:id="@+id/rectangle_494"
+                        android:layout_width="165dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="765dp"
+                        android:contentDescription="rectangle_494"
+                        android:src="@drawable/rectangle_494" />
+
+                    <ImageView
+                        android:id="@+id/image_2"
+                        android:layout_width="1200dp"
+                        android:layout_height="900dp"
+                        android:layout_marginStart="94dp"
+                        android:layout_marginTop="-1028dp"
+                        android:contentDescription="image_2"
+                        android:src="@drawable/image_2" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/back_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/rectangle_496"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="9dp">
+
+                        <ImageView
+                            android:id="@+id/vector"
+                            android:layout_width="16dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="8dp"
+                            android:contentDescription="vector"
+                            android:src="@drawable/vector" />
+
+                        <ImageView
+                            android:id="@+id/vector_ek1"
+                            android:layout_width="8dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:contentDescription="vector_ek1"
+                            android:src="@drawable/vector_ek1" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/trade_bitcoin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="92dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_toEndOf="@+id/back_icon"
+                        android:fontFamily="@font/abeezee"
+                        android:text="@{viewModel.selectedCoin.name}"
+                        android:textColor="@color/trade_bitcoin_color"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="@string/trade_bitcoin_string" />
+
+                    <TextView
+                        android:id="@+id/sell"
+                        android:layout_width="44dp"
+                        android:layout_height="26dp"
+                        android:layout_marginLeft="94dp"
+                        android:layout_marginTop="777dp"
+                        android:fontFamily="Poppins"
+                        android:text="@string/sell_string"
+                        android:textColor="@color/sell_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/buy"
+                        android:layout_width="46dp"
+                        android:layout_height="26dp"
+                        android:layout_marginLeft="270dp"
+                        android:layout_marginTop="777dp"
+                        android:fontFamily="Poppins"
+                        android:text="@string/buy_string"
+                        android:textColor="@color/buy_color"
+                        android:textSize="14sp" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/group_1806"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="97dp">
+
+
+                        <RelativeLayout
+                            android:id="@+id/group_1804"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp">
+
+
+                            <RelativeLayout
+                                android:id="@+id/label_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginTop="0dp">
+
+
+                                <RelativeLayout
+                                    android:id="@+id/icon_currency"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="0dp"
+                                    android:layout_marginTop="0dp">
+
+
+                                    <RelativeLayout
+                                        android:id="@+id/bitcoin__btc_"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="0dp"
+                                        android:layout_marginTop="0dp">
+
+                                        <ImageView
+                                            android:id="@+id/bitcoin__btc__ek1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="0dp"
+                                            android:layout_marginTop="0dp"
+                                            android:contentDescription="bitcoin__btc__ek1"
+                                            android:src="@drawable/bitcoin__btc__ek1" />
+
+                                        <ImageView
+                                            android:id="@+id/bitcoin__btc__ek2"
+                                            android:layout_width="11.48dp"
+                                            android:layout_height="15.2dp"
+                                            android:layout_marginStart="6dp"
+                                            android:layout_marginTop="4dp"
+                                            android:contentDescription="bitcoin__btc__ek2"
+                                            android:src="@drawable/bitcoin__btc__ek2" />
+
+                                    </RelativeLayout>
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/base"
+                        android:layout_width="342dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="433dp"
+                        android:background="@drawable/base_shape" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/group_1809"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="97dp">
+
+
+                        <RelativeLayout
+                            android:id="@+id/tab_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="88dp">
+
+                            <TextView
+                                android:id="@+id/lorem_ipsum"
+                                android:layout_width="29dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins"
+                                android:text="@string/lorem_ipsum_string"
+                                android:textColor="@color/lorem_ipsum_color"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/tab_1_ek1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="57dp"
+                            android:layout_marginTop="88dp">
+
+                            <TextView
+                                android:id="@+id/lorem_ipsum_ek1"
+                                android:layout_width="30dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins"
+                                android:text="@string/lorem_ipsum_ek1_string"
+                                android:textColor="@color/lorem_ipsum_ek1_color"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/tab_1_ek2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="110dp"
+                            android:layout_marginTop="88dp">
+
+                            <TextView
+                                android:id="@+id/lorem_ipsum_ek2"
+                                android:layout_width="31dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins"
+                                android:text="@string/lorem_ipsum_ek2_string"
+                                android:textColor="@color/lorem_ipsum_color"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/tab_1_ek3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="164dp"
+                            android:layout_marginTop="88dp">
+
+                            <TextView
+                                android:id="@+id/lorem_ipsum_ek3"
+                                android:layout_width="34dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins"
+                                android:text="@string/lorem_ipsum_ek3_string"
+                                android:textColor="@color/lorem_ipsum_color"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/tab_1_ek4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="221dp"
+                            android:layout_marginTop="88dp">
+
+                            <TextView
+                                android:id="@+id/lorem_ipsum_ek4"
+                                android:layout_width="28dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins"
+                                android:text="@string/lorem_ipsum_ek4_string"
+                                android:textColor="@color/lorem_ipsum_color"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/bitcoin__btc__ek3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:id="@+id/bitcoin__btc__ek4"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginTop="0dp"
+                                android:contentDescription="bitcoin__btc__ek4"
+                                android:src="@drawable/bitcoin__btc__ek4" />
+
+                            <ImageView
+                                android:id="@+id/bitcoin__btc__ek5"
+                                imageUrl="@{viewModel.selectedCoin.image}"
+                                android:layout_width="17.22dp"
+                                android:layout_height="22.8dp"
+                                android:layout_marginStart="9dp"
+                                android:layout_marginTop="6dp"
+                                android:contentDescription="bitcoin__btc__ek5"
+                                tools:src="@drawable/bitcoin__btc__ek5" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/bitcoin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="14dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@{viewModel.selectedCoin.id}"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="14sp"
+                            tools:text="@string/bitcoin_string" />
+
+                        <TextView
+                            android:id="@+id/real_price"
+                            android:layout_width="162dp"
+                            android:layout_height="53dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="43dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@{Double.toString(viewModel.selectedCoin.current_price)}"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            tools:text="@string/_44_826_12___string" />
+
+                        <View
+                            android:id="@+id/base_ek1"
+                            android:layout_width="341dp"
+                            android:layout_height="218dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="138dp"
+                            android:background="@drawable/base_ek1_shape" />
+
+                        <!--       <View
+                            android:id="@+id/base_ek2"
+                            android:layout_width="341dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="168dp"
+                            android:background="@drawable/base_ek2_shape" />
+
+                        <View
+                            android:id="@+id/base_ek3"
+                            android:layout_width="341dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="202dp"
+                            android:background="@drawable/base_ek3_shape" />
+
+                        <View
+                            android:id="@+id/base_ek4"
+                            android:layout_width="341dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="235dp"
+                            android:background="@drawable/base_ek4_shape" />
+
+                        <View
+                            android:id="@+id/base_ek5"
+                            android:layout_width="341dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="269dp"
+                            android:background="@drawable/base_ek5_shape" />
+
+                        <View
+                            android:id="@+id/base_ek6"
+                            android:layout_width="341dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="302dp"
+                            android:background="@drawable/base_ek6_shape" />-->
+
+                        <View
+                            android:id="@+id/rectangle_493"
+                            android:layout_width="76dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="177dp"
+                            android:layout_marginTop="153dp"
+                            android:background="@drawable/rectangle_493_shape" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart"
+                            android:layout_width="326dp"
+                            android:layout_height="185dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="156dp"
+
+                            android:layout_marginEnd="20dp">
+
+                            <View
+                                android:id="@+id/_bg__trade_page_ek2"
+                                android:layout_width="390dp"
+                                android:layout_height="844dp"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/_bg__trade_page_ek2_shape" />
+                        </com.github.mikephil.charting.charts.LineChart>
+                        <!--<ImageView
+                            android:id="@+id/path_0"
+                            android:layout_width="326dp"
+                            android:layout_height="185dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="156dp"
+                            android:contentDescription="path_0"
+                            android:src="@drawable/path_0" />-->
+
+                        <TextView
+                            android:id="@+id/max_price"
+                            android:layout_width="63dp"
+                            android:layout_height="23dp"
+                            android:layout_gravity="center_horizontal|center"
+                            android:layout_marginLeft="188dp"
+                            android:layout_marginTop="157dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center"
+                            android:text="@string/_44_926_12___string"
+                            android:textColor="@color/trade_bitcoin_color" />
+
+                        <View
+                            android:id="@+id/base_ek7"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginStart="258dp"
+                            android:layout_marginTop="162dp"
+                            android:background="@drawable/base_ek7_shape" />
+
+                        <View
+                            android:id="@+id/rectangle_492"
+                            android:layout_width="60dp"
+                            android:layout_height="22dp"
+                            android:layout_marginStart="288dp"
+                            android:layout_marginTop="50dp"
+                            android:background="@drawable/rectangle_492_shape" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/group_1807"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="296dp"
+                            android:layout_marginTop="54dp">
+
+                            <TextView
+                                android:id="@+id/change_rate"
+                                android:layout_width="45dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginTop="0dp"
+                                android:fontFamily="@font/poppins"
+                                android:gravity="end"
+                                android:text="@string/_2_35__string"
+                                android:textColor="@color/lorem_ipsum_ek1_color"
+                                android:textSize="12sp" />
+
+
+                            <RelativeLayout
+                                android:id="@+id/icon_arrow"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="34dp"
+                                android:layout_marginTop="0dp">
+
+                                <ImageView
+                                    android:id="@+id/coolicon"
+                                    android:layout_width="3.33dp"
+                                    android:layout_height="6.67dp"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_marginTop="5dp"
+                                    android:contentDescription="coolicon"
+                                    android:src="@drawable/coolicon" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/group_1808"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="479dp">
+
+                        <TextView
+                            android:id="@+id/statics"
+                            android:layout_width="86dp"
+                            android:layout_height="37dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/statics_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/current_price"
+                            android:layout_width="89dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginLeft="248dp"
+                            android:layout_marginTop="40dp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="end"
+                            android:text="@string/_44_826_12___ek1_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/current_price_2"
+                            android:layout_width="95dp"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/current_price_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="12sp" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/icon_information"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="82dp"
+                            android:layout_marginTop="42dp">
+
+                            <ImageView
+                                android:id="@+id/coolicon_ek1"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                android:contentDescription="coolicon_ek1"
+                                android:src="@drawable/coolicon_ek1" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/base_ek8"
+                            android:layout_width="326dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="72dp"
+                            android:background="@drawable/base_ek8_shape" />
+
+                        <TextView
+                            android:id="@+id/market_cap"
+                            android:layout_width="77dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginLeft="260dp"
+                            android:layout_marginTop="88dp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="end"
+                            android:text="@string/_836_819___string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/current_price_ek1"
+                            android:layout_width="87dp"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="88dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/current_price_ek1_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="12sp" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/icon_information_ek1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="74dp"
+                            android:layout_marginTop="90dp">
+
+                            <ImageView
+                                android:id="@+id/coolicon_ek2"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                android:contentDescription="coolicon_ek2"
+                                android:src="@drawable/coolicon_ek2" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/base_ek9"
+                            android:layout_width="326dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="120dp"
+                            android:background="@drawable/base_ek9_shape" />
+
+                        <TextView
+                            android:id="@+id/volume_24"
+                            android:layout_width="71dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginLeft="266dp"
+                            android:layout_marginTop="136dp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="end"
+                            android:text="@string/_35_867___string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/current_price_ek2"
+                            android:layout_width="89dp"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="136dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/current_price_ek2_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="12sp" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/icon_information_ek2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="76dp"
+                            android:layout_marginTop="138dp">
+
+                            <ImageView
+                                android:id="@+id/coolicon_ek3"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                android:contentDescription="coolicon_ek3"
+                                android:src="@drawable/coolicon_ek3" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/base_ek10"
+                            android:layout_width="326dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="168dp"
+                            android:background="@drawable/base_ek10_shape" />
+
+                        <TextView
+                            android:id="@+id/available_supply"
+                            android:layout_width="55dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginLeft="282dp"
+                            android:layout_marginTop="184dp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="end"
+                            android:text="@string/_18_784_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/current_price_ek3"
+                            android:layout_width="117dp"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="184dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/current_price_ek3_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="12sp" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/icon_information_ek3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="104dp"
+                            android:layout_marginTop="186dp">
+
+                            <ImageView
+                                android:id="@+id/coolicon_ek4"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                android:contentDescription="coolicon_ek4"
+                                android:src="@drawable/coolicon_ek4" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/base_ek11"
+                            android:layout_width="326dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="216dp"
+                            android:background="@drawable/base_ek11_shape" />
+
+                        <TextView
+                            android:id="@+id/max_supply"
+                            android:layout_width="56dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginLeft="281dp"
+                            android:layout_marginTop="232dp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="end"
+                            android:text="@string/_21_000_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/current_price_ek4"
+                            android:layout_width="86dp"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="232dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/current_price_ek4_string"
+                            android:textColor="@color/trade_bitcoin_color"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/coolicon_ek5"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="75dp"
+                            android:layout_marginTop="236dp"
+                            android:contentDescription="coolicon_ek5"
+                            android:src="@drawable/coolicon_ek5" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/rectangle_496"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="333dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/rectangle_496_shape" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/group_1814"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="341dp"
+                        android:layout_marginTop="39dp">
+
+                        <ImageView
+                            android:id="@+id/vector_ek2"
+                            android:layout_width="7.5dp"
+                            android:layout_height="7.5dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:contentDescription="vector_ek2"
+                            android:src="@drawable/vector_ek2" />
+
+                        <ImageView
+                            android:id="@+id/vector_ek3"
+                            android:layout_width="7.5dp"
+                            android:layout_height="7.5dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="0dp"
+                            android:contentDescription="vector_ek3"
+                            android:src="@drawable/vector_ek3" />
+
+                        <ImageView
+                            android:id="@+id/vector_ek4"
+                            android:layout_width="7.5dp"
+                            android:layout_height="7.5dp"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginTop="9dp"
+                            android:contentDescription="vector_ek4"
+                            android:src="@drawable/vector_ek4" />
+
+                        <ImageView
+                            android:id="@+id/vector_ek5"
+                            android:layout_width="7.5dp"
+                            android:layout_height="7.5dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="9dp"
+                            android:contentDescription="vector_ek5"
+                            android:src="@drawable/vector_ek5" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </ScrollView>
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".CoinsDetailsFragment">
@@ -63,5 +892,5 @@
                 app:layout_constraintTop_toBottomOf="@id/transition_current_scene" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </ScrollView>-->
 </layout>

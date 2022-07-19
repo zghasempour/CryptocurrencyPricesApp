@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- trade_page colors -->
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +12,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="_bg__trade_page_ek2_color">#F5F8FE</color>
+    <color name="rectangle_495_color">#3A58E3</color>
+    <color name="border_color">#ffffff</color>
+    <color name="capacity_color">#333333</color>
+    <color name="trade_bitcoin_color">#1E1F4B</color>
+    <color name="sell_color">#FF403B</color>
+    <color name="buy_color">#FFFFFF</color>
+    <color name="base_color">#5C6162</color>
+    <color name="lorem_ipsum_color">#484C58</color>
+    <color name="lorem_ipsum_ek1_color">#4766F9</color>
+    <color name="base_ek8_color">#E2E3E4</color>
+    <color name="usdt_color">#77798D</color>
+    <color name="ethereum__eth__ek1_color">#EDF0F3</color>
+    <color name="welcome_back____color">#2E3E5C</color>
 </resources>
