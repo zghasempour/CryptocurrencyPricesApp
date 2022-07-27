@@ -4,18 +4,15 @@ import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.cryptocurrencypricesapp.R
-import com.example.cryptocurrencypricesapp.coinsList.MarketsApiStatus
+import com.example.cryptocurrencypricesapp.market.MarketsApiStatus
 import com.example.cryptocurrencypricesapp.network.Coin
 import com.example.cryptocurrencypricesapp.network.MarketsApi
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
-import kotlin.math.roundToInt
 
 class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(app) {
     private val _selectedCoin = MutableLiveData<Coin>()
@@ -39,18 +36,18 @@ class CoinsDetailsViewModel(coin : Coin, app : Application) :AndroidViewModel(ap
     }
     private val _data: MutableLiveData<List<Entry>> by lazy {
         MutableLiveData<List<Entry>>().also {
-            loadData()
+            loadData(2)
         }
     }
     val data : LiveData<List<Entry>>
      get()=_data
 
-    private fun loadData() {
+    private fun loadData(days: Int) {
 
         coroutineScope.launch {
             val getMarketsDeferred = MarketsApi.retrofitService.getMarketsHistoryList(
                 _selectedCoin.value!!.id,
-                "usd",2)
+                "usd",days)
 
             try {
                 _status.value = MarketsApiStatus.LOADING

@@ -1,4 +1,4 @@
-package com.example.cryptocurrencypricesapp.coinsList
+package com.example.cryptocurrencypricesapp.market
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

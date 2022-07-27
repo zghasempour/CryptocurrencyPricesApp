@@ -461,25 +461,6 @@
                             android:textColor="@color/trade_bitcoin_color"
                             android:textSize="12sp" />
 
-
-                        <RelativeLayout
-                            android:id="@+id/icon_information"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="82dp"
-                            android:layout_marginTop="42dp">
-
-                            <ImageView
-                                android:id="@+id/coolicon_ek1"
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                android:contentDescription="coolicon_ek1"
-                                android:src="@drawable/coolicon_ek1" />
-
-                        </RelativeLayout>
-
                         <View
                             android:id="@+id/base_ek8"
                             android:layout_width="326dp"
@@ -512,25 +493,6 @@
                             android:text="@string/current_price_ek1_string"
                             android:textColor="@color/trade_bitcoin_color"
                             android:textSize="12sp" />
-
-
-                        <RelativeLayout
-                            android:id="@+id/icon_information_ek1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="74dp"
-                            android:layout_marginTop="90dp">
-
-                            <ImageView
-                                android:id="@+id/coolicon_ek2"
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                android:contentDescription="coolicon_ek2"
-                                android:src="@drawable/coolicon_ek2" />
-
-                        </RelativeLayout>
 
                         <View
                             android:id="@+id/base_ek9"
@@ -565,25 +527,6 @@
                             android:textColor="@color/trade_bitcoin_color"
                             android:textSize="12sp" />
 
-
-                        <RelativeLayout
-                            android:id="@+id/icon_information_ek2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="76dp"
-                            android:layout_marginTop="138dp">
-
-                            <ImageView
-                                android:id="@+id/coolicon_ek3"
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                android:contentDescription="coolicon_ek3"
-                                android:src="@drawable/coolicon_ek3" />
-
-                        </RelativeLayout>
-
                         <View
                             android:id="@+id/base_ek10"
                             android:layout_width="326dp"
@@ -616,25 +559,6 @@
                             android:text="@string/current_price_ek3_string"
                             android:textColor="@color/trade_bitcoin_color"
                             android:textSize="12sp" />
-
-
-                        <RelativeLayout
-                            android:id="@+id/icon_information_ek3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="104dp"
-                            android:layout_marginTop="186dp">
-
-                            <ImageView
-                                android:id="@+id/coolicon_ek4"
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                android:contentDescription="coolicon_ek4"
-                                android:src="@drawable/coolicon_ek4" />
-
-                        </RelativeLayout>
 
                         <View
                             android:id="@+id/base_ek11"
@@ -669,15 +593,6 @@
                             android:textColor="@color/trade_bitcoin_color"
                             android:textSize="12sp" />
 
-                        <ImageView
-                            android:id="@+id/coolicon_ek5"
-                            android:layout_width="8dp"
-                            android:layout_height="8dp"
-                            android:layout_marginStart="75dp"
-                            android:layout_marginTop="236dp"
-                            android:contentDescription="coolicon_ek5"
-                            android:src="@drawable/coolicon_ek5" />
-
                     </RelativeLayout>
 
                     <View
@@ -694,7 +609,7 @@
                         android:id="@+id/group_1814"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="341dp"
+                        android:layout_marginStart="342dp"
                         android:layout_marginTop="29dp">
 
                         <ImageView

@@ -1,20 +1,17 @@
 package com.example.cryptocurrencypricesapp.coinsDetails
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.cryptocurrencypricesapp.databinding.FragmentCoinsDetailsBinding
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.Legend.LegendForm
-import com.github.mikephil.charting.components.LimitLine
-import com.github.mikephil.charting.components.LimitLine.LimitLabelPosition
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.components.YAxis.AxisDependency
@@ -29,7 +26,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
     private lateinit var viewModel: CoinsDetailsViewModel
     private lateinit var viewModelFactory: CoinDetailViewModelFactory
 
-    private lateinit var binding : FragmentCoinsDetailsBinding
+    private lateinit var binding: FragmentCoinsDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,51 +36,54 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         val application = requireNotNull(activity).application
         binding = FragmentCoinsDetailsBinding.inflate(inflater)
         binding.lifecycleOwner = this
-         val coin = CoinsDetailsFragmentArgs.fromBundle(arguments!!).selectedCoin
-        viewModelFactory = CoinDetailViewModelFactory(coin,application)
+        val coin = CoinsDetailsFragmentArgs.fromBundle(arguments!!).selectedCoin
+        viewModelFactory = CoinDetailViewModelFactory(coin, application)
 
         binding.viewModel = ViewModelProvider(
-            this, viewModelFactory).get(CoinsDetailsViewModel::class.java)
+            this, viewModelFactory
+        ).get(CoinsDetailsViewModel::class.java)
 
 
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         provideViewModel()
         chartConfiguration()
         observeViewModelData()
+        onBackButtonClickListener()
     }
+
+    private fun onBackButtonClickListener() {
+        binding.backIcon.setOnClickListener {
+            findNavController().navigate(CoinsDetailsFragmentDirections.actionDetailFragmentToCoinsListFragment())
+        }
+    }
+
     private fun provideViewModel() {
         viewModel = ViewModelProvider(
-            this, viewModelFactory).get(CoinsDetailsViewModel::class.java)
+            this, viewModelFactory
+        ).get(CoinsDetailsViewModel::class.java)
     }
 
     private fun chartConfiguration() {
         binding.chart.setOnChartValueSelectedListener(this)
 
         // enable description text
-
-        // enable description text
         binding.chart.getDescription().setEnabled(true)
-
-        // enable touch gestures
 
         // enable touch gestures
         binding.chart.setTouchEnabled(true)
 
-        // enable scaling and dragging
 
         // enable scaling and dragging
         binding.chart.isDragEnabled = true
         binding.chart.setScaleEnabled(true)
         binding.chart.setDrawGridBackground(false)
 
-
         // if disabled, scaling can be done on x- and y-axis separately
         binding.chart.setPinchZoom(true)
-
-        // set an alternative background color
 
         // set an alternative background color
         binding.chart.setBackgroundColor(Color.TRANSPARENT)
@@ -93,22 +93,17 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         val data = LineData()
         data.setValueTextColor(Color.LTGRAY)
 
-
         // add empty data
         binding.chart.setData(data)
 
-
         // get the legend (only possible after setting data)
         val l: Legend = binding.chart.legend
-
-        // modify the legend ...
 
         // modify the legend ...
         l.form = LegendForm.LINE
         //l.typeface = tfLight
         l.textColor = Color.LTGRAY
         l.isEnabled = false
-
 
         val xl: XAxis = binding.chart.getXAxis()
         //xl.typeface = tfLight
@@ -117,14 +112,11 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         xl.setAvoidFirstLastClipping(true)
         xl.isEnabled = false
 
-
-
         val rightAxis: YAxis = binding.chart.getAxisRight()
         rightAxis.isEnabled = false
     }
 
     private fun observeViewModelData() {
-
 
         val data: LineData = binding.chart.data
         var set = data.getDataSetByIndex(0)
@@ -134,20 +126,17 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
             data.addDataSet(set)
         }
 
-        viewModel.data.observe (viewLifecycleOwner) {
+        viewModel.data.observe(viewLifecycleOwner) {
 
-            for (element in it){
-           //data.addEntry(Entry(1220.0F*i, 21173.3F*i), 0)}
-           data.addEntry(element, 0)}
+            for (element in it) {
 
-           // data.addEntry(Entry(set.entryCount.toFloat(), (Math.random() * 40).toFloat() + 30f), 0)
+                data.addEntry(element, 0)
 
-            //   data.dataSets.addAll(it)
-
+            }
 
             viewModel.fetchPrices()
 
-            chartMaxMinConfiguration(viewModel.maximumPrice,viewModel.minimumPrice)
+            chartMaxMinConfiguration(viewModel.maximumPrice, viewModel.minimumPrice)
 
             data.notifyDataChanged()
 
@@ -173,16 +162,6 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         leftAxis.setDrawGridLines(true)
         leftAxis.isEnabled = true
         leftAxis.setDrawAxisLine(false)
-/*
-        val ll1 = LimitLine(max, "Upper Limit")
-        ll1.lineWidth = 4f
-        ll1.enableDashedLine(10f, 10f, 0f)
-        ll1.labelPosition = LimitLabelPosition.RIGHT_TOP
-        ll1.textSize = 10f
-        //ll1.typeface = tfRegular
-
-        // add limit lines
-        leftAxis.addLimitLine(ll1)*/
     }
 
     private fun createSet(): LineDataSet {
@@ -195,8 +174,8 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         set.circleRadius = 1f
         //set.fillAlpha = 100
         set.fillColor = ColorTemplate.getHoloBlue()
-        set.enableDashedHighlightLine(10f,10f,0f)
-       // set.setGradientColor(160,174)
+        set.enableDashedHighlightLine(10f, 10f, 0f)
+        // set.setGradientColor(160,174)
         set.highLightColor = Color.rgb(59, 174, 160)
         set.valueTextColor = Color.LTGRAY
         set.valueTextSize = 9f

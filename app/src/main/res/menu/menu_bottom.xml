@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
-        android:icon="@drawable/home"
+        android:id="@+id/splashFragment2"
+        android:icon="@drawable/active_home"
         android:title="Home"/>
     <item
-        android:id="@+id/listFragment"
-        android:icon="@drawable/market"
+        android:id="@+id/coinsListFragment"
+        android:icon="@drawable/inactive_market"
         android:title="Shop"/>
     <item
         android:id="@+id/detailFragment"
-        android:icon="@drawable/notification"
+        android:icon="@drawable/inactive_notification"
         android:title="Favorites"/>
     <item
         android:id="@+id/settingsFragment"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/inactive_settings"
         android:title="Settings"/>
 </menu>
