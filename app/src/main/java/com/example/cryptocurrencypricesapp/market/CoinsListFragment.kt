@@ -1,19 +1,22 @@
 package com.example.cryptocurrencypricesapp.market
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.leanback.widget.GuidedActionAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.cryptocurrencypricesapp.R
 import com.example.cryptocurrencypricesapp.databinding.FragmentCoinsListBinding
+import android.widget.SearchView.OnQueryTextListener as OnQueryTextListener1
 
 
 class CoinsListFragment : Fragment() {
@@ -53,6 +56,30 @@ class CoinsListFragment : Fragment() {
         binding.settingsGroup.setOnClickListener {
         findNavController().navigate(CoinsListFragmentDirections.actionCoinsListFragmentToSettingsFragment2())
         }
+
+        binding.searchView.isSubmitButtonEnabled = true
+
+
+
+
+        binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Log.i(TAG, "onQueryTextSubmit: $query")
+                if (!query.equals(null)){
+                findNavController().navigate(CoinsListFragmentDirections.actionCoinsListFragmentToSearchFragment(query))}
+                // task HERE
+                //on submit send entire query
+                return false
+            }
+
+        })
+        
         return binding.root
     }
 

@@ -81,15 +81,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tether"
             tools:text="@string/usdt_string"/>
 
-        <RelativeLayout
-            android:id="@+id/tether__usdt_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="276dp">
-
-        </RelativeLayout>
-
         <ImageView
             android:id="@+id/tether__usdt__ek1"
             android:layout_width="36dp"
@@ -106,6 +97,19 @@
             android:layout_width="22.4dp"
             android:layout_height="20.63dp"
             app:imageUrl="@{Coin.image}"
+            app:layout_constraintBottom_toBottomOf="@+id/tether__usdt__ek1"
+            app:layout_constraintEnd_toEndOf="@+id/tether__usdt__ek1"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="@+id/rectangle_488"
+            app:layout_constraintTop_toTopOf="@+id/tether__usdt__ek1"
+            app:layout_constraintVertical_bias="0.533"
+            tools:src="@drawable/tether__usdt__ek2"/>
+
+        <ImageView
+            android:id="@+id/tether__usdt__ek3"
+            android:layout_width="22.4dp"
+            android:layout_height="20.63dp"
+            app:imageUrl="@{Coin.thumb}"
             app:layout_constraintBottom_toBottomOf="@+id/tether__usdt__ek1"
             app:layout_constraintEnd_toEndOf="@+id/tether__usdt__ek1"
             app:layout_constraintHorizontal_bias="0.8"

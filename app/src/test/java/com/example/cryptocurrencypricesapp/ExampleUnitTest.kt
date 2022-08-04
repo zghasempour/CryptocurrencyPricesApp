@@ -1,4 +1,4 @@
-package com.example.cryptocurrencypricesapp
+package com.example.cryptoCurrencyPricesApp
 
 import org.junit.Test
 

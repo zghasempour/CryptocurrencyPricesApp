@@ -4,9 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Coin(
+data class SearchedCoin(
     val id : String,
     val name : String,
-    val current_price : Double?,
-    val thumb : String? ,
-    val image : String?) : Parcelable
+    val market_cap_rank : Int,
+    val thumb : String) : Parcelable

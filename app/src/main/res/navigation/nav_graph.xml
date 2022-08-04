@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_coinsListFragment_to_settingsFragment2"
             app:destination="@id/settingsFragment2" />
+        <action
+            android:id="@+id/action_coinsListFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 
     <fragment
@@ -41,8 +44,7 @@
         tools:layout="@layout/fragment_coins_details">
         <argument
             android:name="selectedCoin"
-            app:argType="com.example.cryptocurrencypricesapp.network.Coin"
-            />
+            app:argType="com.example.cryptocurrencypricesapp.network.Coin" />
         <action
             android:id="@+id/action_detailFragment_to_coinsListFragment"
             app:destination="@id/coinsListFragment" />
@@ -91,5 +93,16 @@
         <action
             android:id="@+id/action_settingsFragment2_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.cryptocurrencypricesapp.search.SearchFragment"
+        android:label="SearchFragment" >
+        <argument
+            android:name="selectedCoin"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_showDetail"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

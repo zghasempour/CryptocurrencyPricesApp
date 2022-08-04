@@ -10,7 +10,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.*
 
-private const val BASE_URL = "https://api.coingecko.com/api/v3/coins/"
+private const val BASE_URL = "https://api.coingecko.com/api/v3/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -21,12 +21,19 @@ private val retrofit = Retrofit.Builder()
    // .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
+
 interface MarketsApiService {
-    @GET("markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+    @GET("coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
     fun getMarketsList() : Call<List<Coin>>
 
-    @GET("{coinId}/market_chart")
+    @GET("coins/{coinId}/market_chart")
     fun getMarketsHistoryList(@Path("coinId") coinId: String , @Query("vs_currency") currency: String, @Query("days") days: Int) : Call<Prices>
+
+    @GET("search")
+    fun findCoin(@Query("query") query: String ) : Call<Coins>
+
+
+
 }
 
 object MarketsApi {

@@ -1,4 +1,4 @@
-package com.example.cryptocurrencypricesapp
+package com.example.cryptoCurrencyPricesApp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

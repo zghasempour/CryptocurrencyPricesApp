@@ -36,7 +36,7 @@ class CoinsDetailsFragment : Fragment(), OnChartValueSelectedListener {
         val application = requireNotNull(activity).application
         binding = FragmentCoinsDetailsBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        val coin = CoinsDetailsFragmentArgs.fromBundle(arguments!!).selectedCoin
+        val coin = CoinsDetailsFragmentArgs.fromBundle(requireArguments()).selectedCoin
         viewModelFactory = CoinDetailViewModelFactory(coin, application)
 
         binding.viewModel = ViewModelProvider(
