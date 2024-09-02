@@ -12,7 +12,4 @@ A dynamic and intuitive application that provides real-time cryptocurrency price
 ![ezgif-4-1e68860e43](https://github.com/user-attachments/assets/54d019f0-47cf-444b-a518-9370202e5912)
 
 
-<img src="https://github.com/user-attachments/assets/73a8408e-d2f0-4efa-97da-8caf443be78b" width="500"/>
-<img src="https://github.com/user-attachments/assets/4a8d6413-0c67-4a5b-8913-c07ad19de8fb" width="500"/>
-
 
